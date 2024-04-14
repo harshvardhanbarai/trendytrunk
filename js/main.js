@@ -1,43 +1,40 @@
-const { MongoClient, ObjectId } = require('mongodb');
+const fs = require('fs');
+const path = require('path');
 
-const uri = 'mongodb://localhost:27017';
-const dbName = 'fashion_store';
 
-const client = new MongoClient(uri);
+const jsonFilePath = path.join(__dirname, 'products.json');
 
-async function main() {
+function readJsonFile() {
     try {
-        await client.connect();
-        console.log('Connected to MongoDB');
-
-        const db = client.db(dbName);
-        const productsCollection = db.collection('products');
-
-        const insertResult = await productsCollection.insertOne({
-            name: 'New Product',
-            image: 'img/newproduct.png',
-            category: 'Other',
-            price: 99.99
-        });
-        console.log('Inserted product:', insertResult.insertedId);
-
-        const products = await productsCollection.find({}).toArray();
-        console.log('All products:', products);
-
-        const updateResult = await productsCollection.updateOne(
-            { _id: ObjectId('609ad6fc0f2e1a1a709d54ab') },
-            { $set: { price: 39.99 } }
-        );
-        console.log('Updated product:', updateResult.modifiedCount);
-
-        const deleteResult = await productsCollection.deleteOne({ _id: ObjectId('609ad6fc0f2e1a1a709d54ac') });
-        console.log('Deleted product:', deleteResult.deletedCount);
+        const jsonData = fs.readFileSync(jsonFilePath, 'utf8');
+        return JSON.parse(jsonData);
     } catch (error) {
-        console.error('Error:', error);
-    } finally {
-        await client.close();
-        console.log('Disconnected from MongoDB');
+        console.error('Error reading JSON file:', error);
+        return null;
     }
 }
 
-main().catch(console.error);
+function writeJsonFile(data) {
+    try {
+        fs.writeFileSync(jsonFilePath, JSON.stringify(data, null, 2), 'utf8');
+        console.log('JSON file updated successfully.');
+    } catch (error) {
+        console.error('Error writing to JSON file:', error);
+    }
+}
+
+const data = readJsonFile();
+console.log('Data from JSON file:', data);
+
+
+if (data) {
+    data.products.push({
+        name: 'New Product',
+        image: 'img/newproduct.png',
+        category: 'Other',
+        price: 99.99
+    });
+
+  
+    writeJsonFile(data);
+}
