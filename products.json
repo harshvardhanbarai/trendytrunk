@@ -1,84 +1,72 @@
 {
   "products": [
     {
-      "_id": ObjectId("609ad6fc0f2e1a1a709d54ab"),
       "name": "Headphone One Black",
       "image": "img/feature1.png",
       "category": "Electronics",
       "price": 29
     },
     {
-      "_id": ObjectId("609ad6fc0f2e1a1a709d54ac"),
       "name": "Speaker Beats Pill",
       "image": "img/feature2.png",
       "category": "Electronics",
       "price": 199
     },
     {
-      "_id": ObjectId("609ad6fc0f2e1a1a709d54ad"),
       "name": "Apple Air Pods",
       "image": "img/feature3.png",
       "category": "Electronics",
       "price": 122
     },
     {
-      "_id": ObjectId("609ad6fc0f2e1a1a709d54ae"),
       "name": "Smartwatch F9 Negro",
       "image": "img/feature4.png",
       "category": "Electronics",
       "price": 99
     },
     {
-      "_id": ObjectId("609ad6fc0f2e1a1a709d54af"),
       "name": "Backpack for Men",
       "image": "img/backpackMan.png",
       "category": "Fashion",
       "price": 59
     },
     {
-      "_id": ObjectId("609ad6fc0f2e1a1a709d54b0"),
       "name": "Backpack for Women",
       "image": "img/backpackWoman.png",
       "category": "Fashion",
       "price": 49
     },
     {
-      "_id": ObjectId("609ad6fc0f2e1a1a709d54b1"),
       "name": "New Arrival 1",
       "image": "img/new1.png",
       "category": "New Arrivals",
       "price": 39
     },
     {
-      "_id": ObjectId("609ad6fc0f2e1a1a709d54b2"),
       "name": "New Arrival 2",
       "image": "img/new2.png",
       "category": "New Arrivals",
       "price": 45
     },
     {
-      "_id": ObjectId("609ad6fc0f2e1a1a709d54b3"),
       "name": "New Arrival 3",
       "image": "img/new3.png",
       "category": "New Arrivals",
       "price": 55
     },
     {
-      "_id": ObjectId("609ad6fc0f2e1a1a709d54b4"),
       "name": "New Arrival 4",
       "image": "img/new4.png",
       "category": "New Arrivals",
       "price": 65
     },
     {
-      "_id": ObjectId("609ad6fc0f2e1a1a709d54b5"),
       "name": "New Arrival 5",
       "image": "img/new5.png",
       "category": "New Arrivals",
       "price": 75
     },
     {
-      "_id": ObjectId("609ad6fc0f2e1a1a709d54b6"),
       "name": "New Arrival 6",
       "image": "img/new6.png",
       "category": "New Arrivals",
