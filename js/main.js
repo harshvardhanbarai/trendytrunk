@@ -1,31 +1,43 @@
-/*===== MENU SHOW =====*/ 
-const showMenu = (toggleId, navId) =>{
-	const toggle = document.getElementById(toggleId),
-		nav = document.getElementById(navId)
+const { MongoClient, ObjectId } = require('mongodb');
 
-	if(toggle && nav)
-	{
-		toggle.addEventListener('click', ()=>{
-			nav.classList.toggle('show')
-		})
-	}
+const uri = 'mongodb://localhost:27017';
+const dbName = 'fashion_store';
+
+const client = new MongoClient(uri);
+
+async function main() {
+    try {
+        await client.connect();
+        console.log('Connected to MongoDB');
+
+        const db = client.db(dbName);
+        const productsCollection = db.collection('products');
+
+        const insertResult = await productsCollection.insertOne({
+            name: 'New Product',
+            image: 'img/newproduct.png',
+            category: 'Other',
+            price: 99.99
+        });
+        console.log('Inserted product:', insertResult.insertedId);
+
+        const products = await productsCollection.find({}).toArray();
+        console.log('All products:', products);
+
+        const updateResult = await productsCollection.updateOne(
+            { _id: ObjectId('609ad6fc0f2e1a1a709d54ab') },
+            { $set: { price: 39.99 } }
+        );
+        console.log('Updated product:', updateResult.modifiedCount);
+
+        const deleteResult = await productsCollection.deleteOne({ _id: ObjectId('609ad6fc0f2e1a1a709d54ac') });
+        console.log('Deleted product:', deleteResult.deletedCount);
+    } catch (error) {
+        console.error('Error:', error);
+    } finally {
+        await client.close();
+        console.log('Disconnected from MongoDB');
+    }
 }
 
-showMenu('nav-toggle','nav-menu')
-
-
-/*===== REMOVE MENU MOBILE =====*/
-const navLink = document.querySelectorAll('.nav__link')
-
-function linkAction()
-{
-	// Active link
-	navLink.forEach(n => n.classList.remove('active'))
-	this.classList.add('active')
-
-	// Remove menu mobile
-	const navMenu = document.getElementById('nav-menu')
-	navMenu.classList.remove('show')
-}
-
-navLink.forEach(n => n.addEventListener('click', linkAction))
+main().catch(console.error);
