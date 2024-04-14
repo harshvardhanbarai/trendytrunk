@@ -1,4 +1,4 @@
-db.Trendy_Trunk.insertMany([
+db.trendytrunk.insertMany([
     {
       "_id": ObjectId("609ad6fc0f2e1a1a709d54ab"),
       "name": "Headphone One Black",
